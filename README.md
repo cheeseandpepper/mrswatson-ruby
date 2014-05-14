@@ -8,7 +8,7 @@ First you MUST have MrsWatson installed. Visit teragonaudio.com to install it.
 
 From the command line, type
 
-  $ gem install mrswatson
+  <pre><code>$ gem install mrswatson</code></pre>
 
 ## Usage
 
@@ -16,7 +16,7 @@ This is a simple wrapper for MrsWatson, a command line vst host. Not all feature
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/mrswatson/fork )
+1. Fork it ( http://github.com/cheeseandpepper/mrswatson/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
