@@ -4,8 +4,6 @@ module MrsWatson
     attr_accessor :plugin_chain
     
     def initialize()
-      # @instrument = instrument
-      # @effect = effect
       @plugin_chain = ["-p"]
     end
 

@@ -14,7 +14,7 @@ module MrsWatson
     end
 
     def run
-      puts "#{@sanitized_chain}"
+      #puts "#{@sanitized_chain}"
       system("mrswatson #{@sanitized_chain}")      
     end
 
