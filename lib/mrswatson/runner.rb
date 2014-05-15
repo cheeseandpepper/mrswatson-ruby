@@ -1,43 +1,21 @@
 module MrsWatson
   class Runner
-    def initialize()
-      @chain = []
+    attr_accessor :plugin_chain, :io, :options
+    def initialize(io, plugin_chain, options="")
+      @command_chain = []
+      @plugin_chain = plugin_chain.plugin_chain
+      @io = io.io
+      @options = options
+      @command_chain << @io << @plugin_chain
     end
 
-    def list_plugins
-      @chain << "--list-plugins"
-    end
-
-    def add_input(input)
-      if input[-3..-1] == "mid"
-        @chain << "-m #{input}"
-      elsif input[-3..-1] == "wav"
-        @chain << "-i #{input}"
-      else
-        raise "Invalid Input Dude! - must be .wav or .mid"
-      end
-    end
-
-    def add_output(output)
-      @chain << "-o #{output}"
-    end
-
-    def version
-      @chain << "-v"
-    end
-
-    def add_plugin(plugin)
-      @chain << "-p #{plugin}"
-    end
-
-    def add_effect(effect)
-      @chain << "-p #{effect}"
+    def sanitize
+      @sanitized_chain = @command_chain.flatten.join(" ").gsub("-p ", "-p '").gsub("; ", ";") << "'"
     end
 
     def run
-      #puts final_chain
-      system("mrswatson #{@chain.flatten.join(" ")}")
-      
+      puts "#{@sanitized_chain}"
+      system("mrswatson #{@sanitized_chain}")      
     end
 
   end

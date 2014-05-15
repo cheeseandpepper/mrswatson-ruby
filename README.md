@@ -4,7 +4,7 @@
 
 ## Installation
 
-First you MUST have MrsWatson installed. Visit teragonaudio.com to install it.
+First you MUST have MrsWatson installed. Visit http://teragonaudio.com/MrsWatson.html to install it.
 
 From the command line, type
 
@@ -14,23 +14,50 @@ From the command line, type
 
 This is a simple wrapper for MrsWatson, a command line vst host. Not all features are supported at this time but hopefully soon. This is an early release to get it out there and get feedback. For now this is OS X only, but that should change soon as well.
 
-  <pre><code>
-    mrswatson = MrsWatson::Runner.new()
-  </code></pre>
 
-The above will create a new MrsWatson object. For now everything is done through the Runner class but that could change soon.
+Step 1:
 
   <pre><code>
-    mrswatson.add_input("my_midi.mid") // takes .mid or .wav files
-    mrswatson.add_instrument("Kontakt 5")
-    mrswatson.add_fxp("kontakt.FXP")
-    mrswatson.add_effect("iZotope Trash 2")
-    mrswatson.add_fxp("trash.FXP")
-    mrswatson.add_output("my_output.wav") // optional
-    mrswatson.run // this will execute the MrsWatson command.
+    io = MrsWatson::IO.new()
+    io.set_input("path/to/input")
+    io.set_output("path/to/output")
+  </code></pre>
+
+The input file must be .mid or .wav depending on usage. The output is optional and will make use of MrsWatsons default output if none is specified.
+
+Step 2:
+
+  <pre><code>
+    plugin_chain = MrsWatson::PluginChain.new()
+    plugin_chain.add_instrument("VSTi Name", "optional.FXP")
+    plugin_chain.add_effect("VST Name", "optional.FXP")
+  </code></pre>
+
+Next you specify your plugin chain. If processing a midi file, you must include a VSTi to render the sound. For now only FXP files are supported to set the instrument settings. You can optionally chain as many effects as you want. The order in which you chain the effects is the order in which they will process.
+
+
+Step 3:
+
+
+  <pre><code>
+    mrswatson = MrsWatson::Runner.new(io, plugin_chain)
+    mrswatson.sanitize
+    mrswatson.run
   </code></pre>
 
 
+The Runner class is what executes the program. It takes in the previously defined IO instance and PluginChain instance. It is strongly recommended (if not required) that you sanitize the instance before running it. I should probably refactor this to be part of the run method. Soon...
+
+
+Additionally you can use the Util class
+
+  <pre><code>
+    util = MrsWatson::Util.new()
+    util.version
+    util.plugin_list
+  </code></pre>
+
+The Util class currently supports version, and plugin_list which will give you the MrsWatson version installed and the list of plugins you have installed respectively. More Util methods to come in the future.
 
 ## Contributing
 
