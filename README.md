@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/cheeseandpepper/mrswatson-ruby.png)](https://codeclimate.com/github/cheeseandpepper/mrswatson-ruby)
+
 # MrsWatson Ruby Gem
 
 
