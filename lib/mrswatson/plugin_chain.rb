@@ -8,20 +8,11 @@ module MrsWatson
     end
 
     def add_instrument(instrument, fxp="")
-      if fxp == ""
-        @plugin_chain << "#{instrument};"
-      else
-        @plugin_chain << "#{instrument},#{fxp};"
-      end
+      @plugin_chain << "#{instrument}"; fxp == "" ? ";" : ",#{fxp};"
     end
 
-
     def add_effect(effect, fxp="")
-      if fxp == ""
-        @plugin_chain << "#{effect};"
-      else
-        @plugin_chain << "#{effect},#{fxp};"
-      end
+      @plugin_chain << "#{effect}"; fxp == "" ? ";" : ",#{fxp};"
     end
 
     def sanitize
