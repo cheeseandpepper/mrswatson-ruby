@@ -5,5 +5,5 @@ rvm:
 
 install: 
   - wget https://github.com/teragonaudio/MrsWatson/zipball/master
-  - unzip tmp/MrsWatson-master.zip
-  - cd MrsWatson-master && ./configure --prefix=/usr && make && make install
+  - unzip teragonaudio-MrsWatson-0.9.7-15-g440b112.zip
+  - cd teragonaudio-MrsWatson-0.9.7-15-440b112 && ./configure --prefix=/usr && make && make install
